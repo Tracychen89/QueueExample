@@ -1,0 +1,6 @@
+C:\Users\chenxin\Documents\GitHub\QueueExample\QueueExample\QueueExample\bin\Debug\QueueExample.exe.config
+C:\Users\chenxin\Documents\GitHub\QueueExample\QueueExample\QueueExample\bin\Debug\QueueExample.exe
+C:\Users\chenxin\Documents\GitHub\QueueExample\QueueExample\QueueExample\bin\Debug\QueueExample.pdb
+C:\Users\chenxin\Documents\GitHub\QueueExample\QueueExample\QueueExample\obj\Debug\QueueExample.csprojResolveAssemblyReference.cache
+C:\Users\chenxin\Documents\GitHub\QueueExample\QueueExample\QueueExample\obj\Debug\QueueExample.exe
+C:\Users\chenxin\Documents\GitHub\QueueExample\QueueExample\QueueExample\obj\Debug\QueueExample.pdb
