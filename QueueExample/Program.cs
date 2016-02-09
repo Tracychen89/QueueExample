@@ -8,69 +8,75 @@ namespace QueueExample
 {
     class Queue<T>
     {
-        // Properties private _capacity
+        // declare private int variable _capacity
         private int _capacity;
+        // declare public int property Capacity
         public int Capacity
         {
             get { return _capacity; }
             set { _capacity = value; }
         }
-        // properties private int _length
+        // declare private int variable _length
         private int _length;
+        // declare public int property Length
         public int Length
         {
             get { return _length; }
             set { _length = value; }
         }
-        // properties private generic _elements 
+        // declare private generic variable _elements
         private T[] _elements;
+        // declare protected generic property _elements 
         protected T[] Elements
         {
             get { return _elements; }
             set { _elements = value; }
         }
-        // properties private int _frontIndex
+        // declare private int variable _frontIndex
         private int _frontIndex;
+        // declare public int property FrontIndex
         public int FrontIndex
         {
             get { return _frontIndex; }
             set { _frontIndex = value; }
         }
-        // properties public int BackIndex
+        // delcare public int  property BackIndex
         public int BackIndex
-        {
+        {// process get (FrontIndex + Length) % Capacity to BackIndex whenever access BackIndex
             get { return (FrontIndex + Length) % Capacity; }
         }
 
         // Constructor Queue() 
         public Queue()
-        {
+        {// creat a generic with capacity of Capacity and Elements refer to this generic 
+         // Capacity has  default value 0
             Elements = new T[Capacity];
         }
         // Constructor Queue(int capacity)
         public Queue(int capacity)
-        {
+        {// assign capacity to Capacity 
             Capacity = capacity;
+         // creat a generic with capacity of Capacity and Elements refer to this generic 
             Elements = new T[Capacity];
         }
 
         //public method Enqueue(T element) 
-        //why argument should be T???
+        // T element can be  any data type
 
         public void Enqueue(T element)
         {
             // if Queue is full, invoke method IncreaseCapacity()
-            // keyword this???
             if (this.Length == Capacity)
             {
                 IncreaseCapacity();
             }
             // if Queue is not full, assign element to Elements[] and enlong Length
+            // BackIndex change 
             Elements[BackIndex] = element;
             Length++;
         }
 
-        // public method Dequeue. it  has generic output????
+        // public method Dequeue. it  has generic output
         public T Dequeue()
         {
             // use if statement to deal with Queue is empty 
@@ -79,35 +85,39 @@ namespace QueueExample
                 // throw an instance of InvalidOperationException 
                 throw new InvalidOperationException("Queue is empty");
             }
-
+            // assign Elements[FrontIndex] to element  but what's the initial value of FrontIndex???
             T element = Elements[FrontIndex];
+            // assign default value to Elements[FrontIndex]
             Elements[FrontIndex] = default(T);
+            // shorten the Length
             Length--;
+            // assign new value to FrontIndex
             FrontIndex = (FrontIndex + 1) % Capacity;
+            // return element
             return element;
         }
 
         // protected member function will allow child class to use 
         // in this program we don't have child class. ??
-        // keyword this???
         protected void IncreaseCapacity()
         {
-            // ???
+            // 
             this.Capacity++;
             // twice the Capacity 
             this.Capacity *= 2;
-            // instanciate tempQueue as  Queue<T> with twice capacity 
+            // creat a object Queue<T> with twice capacity 
+            // tempQueue refer to Queue<>()
             Queue<T> tempQueue = new Queue<T>(this.Capacity);
-            // while loop ???
+            // use while loop to put data into tempQueue
             while (this.Length > 0)
             {
                 tempQueue.Enqueue(this.Dequeue());
             }
-            // assign tempQueue Elements to Elements
+            // Elements refer to tempQueue.Elements
             this.Elements = tempQueue.Elements;
-            // assign tempQueue Length to Length
+            // Length refer to tempQueue.Length
             this.Length = tempQueue.Length;
-            // assign tempQueue FrontIndex to FrontIndex 
+            // FrontIndex refer to tempQueue.FrontIndex 
             this.FrontIndex = tempQueue.FrontIndex;
         }
     }
@@ -116,7 +126,10 @@ namespace QueueExample
     {
         static void Main(string[] args)
         {
+            // declare a int generic Queue named myQueue and creat a int generic Queue object
+            // myQueue refer to this object???
             Queue<int> myQueue = new Queue<int>();
+            // use for loop to enqueue 0-49 to myQueue and console myQueue.Length
             for (int i = 0; i < 50; i++)
             {
                 Console.WriteLine("Enqueue:" + i);
@@ -124,6 +137,7 @@ namespace QueueExample
                 Console.WriteLine("New Length is: " + myQueue.Length);
 
             }
+           // use for loop to dequeue 0-49 of myQueue and console myQueue.Length 
             for (int i = 0; i < 50; i++)
             {
                 Console.WriteLine("Dequeue: " + myQueue.Dequeue());
